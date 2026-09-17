@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NET 101 - Prelim Exam Complete Mock Test</title>
+    <style>
+        :root {
+            --purple: #673ab7;
+            --bg-color: #f0ebf8;
+            --card-bg: #ffffff;
+            --border-color: #dadce0;
+            --text-primary: #202124;
+            --text-secondary: #5f6368;
+            --correct-color: #1e8e3e;
+            --wrong-color: #d93025;
+            --accent-bg: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 20px 10px 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 680px;
+        }
+
+        .header-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            border-top: 10px solid var(--purple);
+            padding: 24px;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+        }
+
+        .header-card h1 {
+            margin: 0 0 8px;
+            font-size: 26px;
+            font-weight: 500;
+        }
+
+        .header-card p {
+            margin: 4px 0;
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .score-board {
+            display: none;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            text-align: center;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+            border: 2px solid var(--purple);
+        }
+
+        .score-board h2 {
+            margin: 0 0 8px;
+            color: var(--purple);
+            font-size: 24px;
+        }
+
+        .question-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            padding: 24px;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+
+        .question-card.module-header {
+            background-color: #ede7f6;
+            border-left: 6px solid var(--purple);
+            padding: 14px 20px;
+        }
+
+        .question-card.module-header h2 {
+            margin: 0;
+            font-size: 16px;
+            color: var(--purple);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .question-title {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        .options-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: flex-start;
+            font-size: 14px;
+            cursor: pointer;
+            padding: 8px 10px;
+            border-radius: 4px;
+            transition: background 0.15s;
+        }
+
+        .option-label:hover {
+            background-color: var(--accent-bg);
+        }
+
+        .option-label input[type="radio"] {
+            margin-right: 12px;
+            margin-top: 2px;
+            accent-color: var(--purple);
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .feedback {
+            margin-top: 14px;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            line-height: 1.4;
+            display: none;
+        }
+
+        .feedback.correct {
+            background-color: #e6f4ea;
+            color: var(--correct-color);
+            border: 1px solid var(--correct-color);
+        }
+
+        .feedback.wrong {
+            background-color: #fce8e6;
+            color: var(--wrong-color);
+            border: 1px solid var(--wrong-color);
+        }
+
+        .btn-submit {
+            background-color: var(--purple);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            font-size: 15px;
+            font-weight: 500;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            opacity: 0.92;
+        }
+
+        code {
+            background-color: #f1f3f4;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 13px;
+            color: #c7254e;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header-card">
+        <h1>NET 101 - Prelim Exam Review Mock (30 Questions)</h1>
+        <p>This exam is modeled after situational, comparison, and CLI configuration questions based on your NET 101 pointers.</p>
+        <p style="color: var(--wrong-color); font-size: 12px; margin-top: 8px;">* Required fields</p>
+    </div>
+
+    <div id="scoreBoard" class="score-board">
+        <h2 id="scoreText">Your Score: 0/30</h2>
+        <p id="scorePercent" style="margin:0; font-size: 14px; color: var(--text-secondary);"></p>
+    </div>
+
+    <form id="quizForm">
+
+        <!-- MODULE 1 -->
+        <div class="question-card module-header">
+            <h2>Module 1: Networking Today</h2>
+        </div>
+
+        <div class="question-card">
+            <div class="question-title">1. An IT engineer is reviewing a blueprint showing where network cables run inside wall conduits and where each switch rack is physically installed in the server room. What topology type is this? *</div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q1" value="A"> Logical Topology</label>
+                <label class="option-label"><input type="radio" name="q1" value="B"> Physical Topology</label>
+                <label class="option-label"><input type="radio" name="q1" value="C"> Layer 3 Topology</label>
+                <label class="option-label"><input type="radio" name="q1" value="D"> Protocol Topology</label>
+            </div>
+            <div id="fb-q1" class="feedback"></div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-title">2. A network diagram shows how IP packets flow from Host A to Server B through specific IP subnets, regardless of where the physical devices sit. What topology is this? *</div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q2" value="A"> Physical Topology</label>
+                <label class="option-label"><input type="radio" name="q2" value="B"> Logical Topology</label>
+                <label class="option-label"><input type="radio" name="q2" value="C"> Cable Infrastructure Topology</label>
+                <label class="option-label"><input type="radio" name="q2" value="D"> Hardware Layout</label>
+            </div>
+            <div id="fb-q2" class="feedback"></div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-title">3. During a main fiber link failure, traffic automatically switches to a backup path without interrupting user service. Which network architecture pillar does this demonstrate? *</div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q3" value="A"> Quality of Service (QoS)</label>
+                <label class="option-label"><input type="radio" name="q3" value="B"> Scalability</label>
+                <label class="option-label"><input type="radio" name="q3" value="C"> Fault Tolerance</label>
+                <label class="option-label"><input type="radio" name="q3" value="D"> Data Integrity</label>
+            </div>
+            <div id="fb-q3" class="feedback"></div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-title">4. A company grows from 50 employees to 500 without needing to redesign the fundamental network architecture. Which pillar does this represent? *</div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q4" value="A"> Quality of Service (QoS)</label>
+                <label class="option-label"><input type="radio" name="q4" value="B"> Fault Tolerance</label>
+                <label class="option-label"><input type="radio" name="q4" value="C"> Scalability</label>
+                <label class="option-label"><input type="radio" name="q4" value="D"> Physical Security</label>
+            </div>
+            <div id="fb-q4" class="feedback"></div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-title">5. During high network utilization, live video stream calls remain clear while large email downloads slow down slightly. What architecture feature causes this? *</div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q5" value="A"> Scalability</label>
+                <label class="option-label"><input type="radio" name="q5" value="B"> Quality of Service (QoS)</label>
+                <label class="option-label"><input type="radio" name="q5" value="C"> Fault Tolerance</label>
+                <label class="option-label"><input type="radio" name="q5" value="D"> Logical Topology</label>
+            </div>
+            <div id="fb-q5" class="feedback"></div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-title">6. Which device is primarily responsible for connecting multiple devices together within the same Local Area Network (LAN)? *</div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q6" value="A"> Router</label>
+                <label class="option-label"><input type="radio" name="q6" value="B"> Switch</label>
+                <label class="option-label"><input type="radio" name="q6" value="C"> Modem</label>
+                <label class="option-label"><input type="radio" name="q6" value="D"> Firewall</label>
+            </div>
+            <div id="fb-q6" class="feedback"></div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-title">7. Which device connects two or more separate network ranges together and makes routing decisions across networks? *</div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q7" value="A"> Switch</label>
+                <label class="option-label"><input type="radio" name="q7" value="B"> Access Point</label>
+                <label class="option-label"><input type="radio" name="q7" value="C"> Router</label>
+                <label class="option-label"><input type="radio" name="q7" value="D"> Network Interface Card (NIC)</label>
+            </div>
+            <div id="fb-q7" class="feedback"></div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-title">8. What component inside a computer provides the physical/hardware interface required to connect the computer to a network? *</div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q8" value="A"> Switch Port</label>
+                <label class="option-label"><input type="radio" name="q8" value="B"> Network Interface Card (NIC)</label>
+                <label class="option-label"><input type="radio" name="q8" value="C"> Modem</label>
+                <label class="option-label"><input type="radio" name="q8" value="D"> Access Point</label>
+            </div>
+            <div id="fb-q8" class="feedback"></div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-title">9. What device converts digital signals from local network equipment into analog signals for transmission over ISP lines? *</div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q9" value="A"> Switch</label>
+                <label class="option-label"><input type="radio" name="q9" value="B"> Router</label>
+                <label class="option-label"><input type="radio" name="q9" value="C"> Modem</label>
+                <label class="option-label"><input type="radio" name="q9" value="D"> Wireless Access Point</label>
+            </div>
+            <div id="fb-q9" class="feedback"></div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-title">10. A user connects a smartphone to the company network via Wi-Fi. Which device provides this direct wireless link into the wired LAN? *</div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q10" value="A"> Router</label>
+                <label class="option-label"><input type="radio" name="q10" value="B"> Wireless Access Point (AP)</label>
+                <label class="option-label"><input type="radio" name="q10" value="C"> Server</label>
+                <label class="option-label"><input type="radio" name="q10" value="D"> Switch</label>
+            </div>
+            <div id="fb-q10" class="feedback"></div>
+        </div>
+
+        <!-- MODULE 2 -->
+        <div class="question-card module-header">
+            <h2>Module 2: Basic Switch and End Device Configuration</h2>
+        </div>
+
+        <div class="question-card">
+            <div class="question-title">11. Why should an administrator prefer SSH over Telnet for remote administration of a Cisco switch? *</div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q11" value="A"> Telnet is slower than SSH.</label>
+                <label class="option-label"><input type="radio" name="q11" value="B"> SSH encrypts all terminal traffic, whereas Telnet sends plaintext.</label>
+                <label class="option-label"><input type="radio" name="q11" value="C"> Telnet requires web browsers to connect.</label>
+                <label class="option-label"><input type="radio" name="q11" value="D"> SSH does not require passwords.</label>
+            </div>
+            <div id="fb-q11" class="feedback"></div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-title">12. Upon initial console connection to a switch, you see the prompt <code>Switch></code>. Which prompt mode is this? *</div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q12" value="A"> Privileged EXEC Mode</label>
+                <label class="option-label"><input type="radio" name="q12" value="B"> Global Configuration Mode</label>
+                <label class="option-label"><input type="radio" name="q12" value="C"> User EXEC Mode</label>
+                <label class="option-label"><input type="radio" name="q12" value="D"> Interface Mode</label>
+            </div>
+            <div id="fb-q12" class="feedback"></div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-title">13. Which command is used to move from User EXEC mode (<code>Switch></code>) to Privileged EXEC mode (<code>Switch#</code>)? *</div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q13" value="A"> <code>configure terminal</code></label>
+                <label class="option-label"><input type="radio" name="q13" value="B"> <code>enable</code></label>
+                <label class="option-label"><input type="radio" name="q13" value="C"> <code>system start</code></label>
+                <label class="option-label"><input type="radio" name="q13" value="D"> <code>login</code></label>
+            </div>
+            <div id="fb-q13" class="feedback"></div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-title">14. Which command allows you to enter Global Configuration Mode from Privileged EXEC mode? *</div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q14" value="A"> <code>config terminal</code> (or <code>configure terminal</code>)</label>
+                <label class="option-label"><input type="radio" name="q14" value="B"> <code>enable secret</code></label>
+                <label class="option-label"><input type="radio" name="q14" value="C"> <code>interface vlan 1</code></label>
+                <label class="option-label"><input type="radio" name="q14" value="D"> <code>line console 0</code></label>
+            </div>
+            <div id="fb-q14" class="feedback"></div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-title">15. You want to rename a switch to "SVI-SW-01". Which command should you execute in Global Config mode? *</div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q15" value="A"> <code>name SVI-SW-01</code></label>
+                <label class="option-label"><input type="radio" name="q15" value="B"> <code>switchname SVI-SW-01</code></label>
+                <label class="option-label"><input type="radio" name="q15" value="C"> <code>hostname SVI-SW-01</code></label>
+                <label class="option-label"><input type="radio" name="q15" value="D"> <code>set host SVI-SW-01</code></label>
+            </div>
+            <div id="fb-q15" class="feedback"></div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-title">16. What is the difference between <code>enable password</code> and <code>enable secret</code>? *</div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q16" value="A"> <code>enable password</code> is encrypted, <code>enable secret</code> is plain text.</label>
+                <label class="option-label"><input type="radio" name="q16" value="B"> <code>enable secret</code> uses strong MD5/hash encryption, while <code>enable password</code> stores plain text.</label>
+                <label class="option-label"><input type="radio" name="q16" value="C"> <code>enable password</code> is for console port only.</label>
+                <label class="option-label"><input type="radio" name="q16" value="D"> They perform identical security functions.</label>
+            </div>
+            <div id="fb-q16" class="feedback"></div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-title">17. Which sequence of commands correctly secures the physical console port with a password? *</div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q17" value="A"> <code>line console 0</code> -> <code>password cisco</code> -> <code>login</code></label>
+                <label class="option-label"><input type="radio" name="q17" value="B"> <code>enable password cisco</code> -> <code>login</code></label>
+                <label class="option-label"><input type="radio" name="q17" value="C"> <code>interface console 0</code> -> <code>password cisco</code></label>
+                <label class="option-label"><input type="radio" name="q17" value="D"> <code>console password cisco</code> -> <code>enable</code></label>
+            </div>
+            <div id="fb-q17" class="feedback"></div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-title">18. To encrypt all weak/plaintext passwords in the switch configuration file, which command is used? *</div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q18" value="A"> <code>encrypt all</code></label>
+                <label class="option-label"><input type="radio" name="q18" value="B"> <code>service password-encryption</code></label>
+                <label class="option-label"><input type="radio" name="q18" value="C"> <code>enable secret password</code></label>
+                <label class="option-label"><input type="radio" name="q18" value="D"> <code>password-protection enable</code></label>
+            </div>
+            <div id="fb-q18" class="feedback"></div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-title">19. Which command displays a legal warning message to users before they log into the CLI? *</div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q19" value="A"> <code>banner motd # Authorized Access Only! #</code></label>
+                <label class="option-label"><input type="radio" name="q19" value="B"> <code>warning message # Authorized Access Only! #</code></label>
+                <label class="option-label"><input type="radio" name="q19" value="C"> <code>set banner # Authorized Access Only! #</code></label>
+                <label class="option-label"><input type="radio" name="q19" value="D"> <code>show motd # Authorized Access Only! #</code></label>
+            </div>
+            <div id="fb-q19" class="feedback"></div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-title">20. You are configuring remote management on VLAN 1. You entered <code>ip address 192.168.1.5 255.255.255.0</code>. What crucial step is still needed to enable this interface? *</div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q20" value="A"> Enter command <code>enable interface</code></label>
+                <label class="option-label"><input type="radio" name="q20" value="B"> Enter command <code>no shutdown</code></label>
+                <label class="option-label"><input type="radio" name="q20" value="C"> Enter command <code>interface up</code></label>
+                <label class="option-label"><input type="radio" name="q20" value="D"> Restart the switch</label>
+            </div>
+            <div id="fb-q20" class="feedback"></div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-title">21. An administrator makes configuration changes, but after a power reboot, all settings revert back to default. What command should have been executed? *</div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q21" value="A"> <code>copy running-config startup-config</code></label>
+                <label class="option-label"><input type="radio" name="q21" value="B"> <code>copy startup-config running-config</code></label>
+                <label class="option-label"><input type="radio" name="q21" value="C"> <code>save flash</code></label>
+                <label class="option-label"><input type="radio" name="q21" value="D"> <code>write erase</code></label>
+            </div>
+            <div id="fb-q21" class="feedback"></div>
+        </div>
+
+        <!-- MODULE 3 -->
+        <div class="question-card module-header">
+            <h2>Module 3: Protocols and Models</h2>
+        </div>
+
+        <div class="question-card">
+            <div class="question-title">22. How many layers are in the OSI Reference Model versus the TCP/IP Conceptual Model? *</div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q22" value="A"> OSI has 4 layers; TCP/IP has 7 layers.</label>
+                <label class="option-label"><input type="radio" name="q22" value="B"> OSI has 7 layers; TCP/IP has 4 layers.</label>
+                <label class="option-label"><input type="radio" name="q22" value="C"> Both have 7 layers.</label>
+                <label class="option-label"><input type="radio" name="q22" value="D"> OSI has 5 layers; TCP/IP has 4 layers.</label>
+            </div>
+            <div id="fb-q22" class="feedback"></div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-title">23. Which layer of the OSI model is responsible for end-to-end data transfer, segmentation, and reliability (e.g., TCP)? *</div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q23" value="A"> Layer 2 - Data Link</label>
+                <label class="option-label"><input type="radio" name="q23" value="B"> Layer 3 - Network</label>
+                <label class="option-label"><input type="radio" name="q23" value="C"> Layer 4 - Transport</label>
+                <label class="option-label"><input type="radio" name="q23" value="D"> Layer 7 - Application</label>
+            </div>
+            <div id="fb-q23" class="feedback"></div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-title">24. At which layer of the OSI model do MAC addresses and Ethernet frames operate? *</div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q24" value="A"> Layer 1 - Physical</label>
+                <label class="option-label"><input type="radio" name="q24" value="B"> Layer 2 - Data Link</label>
+                <label class="option-label"><input type="radio" name="q24" value="C"> Layer 3 - Network</label>
+                <label class="option-label"><input type="radio" name="q24" value="D"> Layer 4 - Transport</label>
+            </div>
+            <div id="fb-q24" class="feedback"></div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-title">25. IP addresses exist at Layer 3 (Network). What is the primary purpose of Layer 3 IP addressing? *</div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q25" value="A"> Delivery of bits over physical copper wires.</label>
+                <label class="option-label"><input type="radio" name="q25" value="B"> Logical addressing used to route packets between different networks.</label>
+                <label class="option-label"><input type="radio" name="q25" value="C"> Formatting and encrypting web text.</label>
+                <label class="option-label"><input type="radio" name="q25" value="D"> Identifying individual manufacturer network cards inside a LAN local switch.</label>
+            </div>
+            <div id="fb-q25" class="feedback"></div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-title">26. Which layer in the OSI model handles encryption, compression, and formatting of data (such as JPEG, ASCII)? *</div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q26" value="A"> Application Layer (Layer 7)</label>
+                <label class="option-label"><input type="radio" name="q26" value="B"> Presentation Layer (Layer 6)</label>
+                <label class="option-label"><input type="radio" name="q26" value="C"> Session Layer (Layer 5)</label>
+                <label class="option-label"><input type="radio" name="q26" value="D"> Transport Layer (Layer 4)</label>
+            </div>
+            <div id="fb-q26" class="feedback"></div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-title">27. How does a MAC address differ from an IP address? *</div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q27" value="A"> MAC addresses are 32-bit dotted decimals; IP addresses are hexadecimal.</label>
+                <label class="option-label"><input type="radio" name="q27" value="B"> MAC addresses are physical addresses permanently assigned to NICs; IP addresses are logical addresses assigned based on network location.</label>
+                <label class="option-label"><input type="radio" name="q27" value="C"> MAC addresses operate at Layer 3; IP addresses operate at Layer 2.</label>
+                <label class="option-label"><input type="radio" name="q27" value="D"> MAC addresses change whenever you move to a new Wi-Fi network.</label>
+            </div>
+            <div id="fb-q27" class="feedback"></div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-title">28. Which layer of the TCP/IP model corresponds to combined Layers 5, 6, and 7 of the OSI Model? *</div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q28" value="A"> Network Access</label>
+                <label class="option-label"><input type="radio" name="q28" value="B"> Internet</label>
+                <label class="option-label"><input type="radio" name="q28" value="C"> Transport</label>
+                <label class="option-label"><input type="radio" name="q28" value="D"> Application</label>
+            </div>
+            <div id="fb-q28" class="feedback"></div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-title">29. What is the standard format size for a MAC address? *</div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q29" value="A"> 32-bit dotted decimal</label>
+                <label class="option-label"><input type="radio" name="q29" value="B"> 48-bit hexadecimal</label>
+                <label class="option-label"><input type="radio" name="q29" value="C"> 128-bit alphanumeric</label>
+                <label class="option-label"><input type="radio" name="q29" value="D"> 64-bit binary</label>
+            </div>
+            <div id="fb-q29" class="feedback"></div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-title">30. A network technician checks a physical cable using a cable tester to ensure light signals are passing through. What OSI Layer is being tested? *</div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q30" value="A"> Layer 1 - Physical Layer</label>
+                <label class="option-label"><input type="radio" name="q30" value="B"> Layer 2 - Data Link Layer</label>
+                <label class="option-label"><input type="radio" name="q30" value="C"> Layer 3 - Network Layer</label>
+                <label class="option-label"><input type="radio" name="q30" value="D"> Layer 4 - Transport Layer</label>
+            </div>
+            <div id="fb-q30" class="feedback"></div>
+        </div>
+
+        <button type="button" class="btn-submit" onclick="gradeQuiz()">Submit Exam</button>
+    </form>
+</div>
+
+<script>
+    const answers = {
+        q1: { ans: "B", explain: "Physical topology documents the physical layout, cable runs, and device locations." },
+        q2: { ans: "B", explain: "Logical topology shows how data flows through a network and logical addressing regardless of layout." },
+        q3: { ans: "C", explain: "Fault tolerance provides redundant paths so failure of a single link doesn't stop traffic." },
+        q4: { ans: "C", explain: "Scalability allows networks to expand easily without degrading services." },
+        q5: { ans: "B", explain: "Quality of Service (QoS) prioritizes real-time traffic (voice/video) over non-critical data." },
+        q6: { ans: "B", explain: "Switches connect devices together within the same local network domain (LAN)." },
+        q7: { ans: "C", explain: "Routers connect different network ranges together and route data across networks." },
+        q8: { ans: "B", explain: "A Network Interface Card (NIC) connects an end device to network media." },
+        q9: { ans: "C", explain: "Modems modulate and demodulate digital network traffic into ISP analog signals." },
+        q10: { ans: "B", explain: "Wireless Access Points (APs) provide wireless radio signal links into a wired network." },
+        q11: { ans: "B", explain: "SSH encrypts all management sessions, protecting passwords from sniffer attacks." },
+        q12: { ans: "C", explain: "The prompt 'Switch>' represents User EXEC Mode." },
+        q13: { ans: "B", explain: "Executing 'enable' moves the CLI from User EXEC to Privileged EXEC mode ('Switch#')." },
+        q14: { ans: "A", explain: "'configure terminal' enters Global Configuration Mode ('Switch(config)#')." },
+        q15: { ans: "C", explain: "The 'hostname [Name]' command changes the device's system name in Global Config mode." },
+        q16: { ans: "B", explain: "'enable secret' encrypts the password with MD5 hashing, while 'enable password' stays in clear text." },
+        q17: { ans: "A", explain: "Console passwords require entering line console 0, specifying password, and issuing 'login'." },
+        q18: { ans: "B", explain: "'service password-encryption' obfuscates all plaintext passwords in the running configuration file." },
+        q19: { ans: "A", explain: "'banner motd' sets a Message of the Day displayed prior to CLI authentication." },
+        q20: { ans: "B", explain: "Interfaces on Cisco devices are administratively shut down by default; 'no shutdown' enables them." },
+        q21: { ans: "A", explain: "'copy running-config startup-config' saves settings from temporary RAM to non-volatile NVRAM." },
+        q22: { ans: "B", explain: "OSI is a 7-layer theoretical reference model; TCP/IP is a 4-layer operational stack." },
+        q23: { ans: "C", explain: "Transport Layer (Layer 4) handles flow control, segmentation, and reliability (TCP/UDP)." },
+        q24: { ans: "B", explain: "Data Link Layer (Layer 2) manages MAC addresses, framing, and physical network access." },
+        q25: { ans: "B", explain: "Layer 3 logical IPv4/IPv6 addresses allow routers to route data across different networks." },
+        q26: { ans: "B", explain: "Presentation Layer (Layer 6) handles syntax, formatting, compression, and encryption." },
+        q27: { ans: "B", explain: "MAC is a physical 48-bit burned-in address; IP is a logical 32-bit routing address." },
+        q28: { ans: "D", explain: "The TCP/IP Application layer combines OSI Application, Presentation, and Session layers." },
+        q29: { ans: "B", explain: "A MAC address is 48 bits written in 12 hexadecimal characters (e.g., 00:1A:2B:3C:4D:5E)." },
+        q30: { ans: "A", explain: "Physical media, signals, cable wiring, and connectors belong to Layer 1 (Physical)." }
+    };
+
+    function gradeQuiz() {
+        let score = 0;
+        let total = Object.keys(answers).length;
+
+        for (let q in answers) {
+            let selected = document.querySelector(`input[name="${q}"]:checked`);
+            let fb = document.getElementById(`fb-${q}`);
+            fb.style.display = "block";
+
+            if (selected) {
+                if (selected.value === answers[q].ans) {
+                    score++;
+                    fb.className = "feedback correct";
+                    fb.innerHTML = `<strong>Correct!</strong> ${answers[q].explain}`;
+                } else {
+                    fb.className = "feedback wrong";
+                    fb.innerHTML = `<strong>Incorrect.</strong> Your answer: (${selected.value}) | Correct Answer: <strong>(${answers[q].ans})</strong><br>${answers[q].explain}`;
+                }
+            } else {
+                fb.className = "feedback wrong";
+                fb.innerHTML = `<strong>Not answered.</strong> Correct Answer: <strong>(${answers[q].ans})</strong><br>${answers[q].explain}`;
+            }
+        }
+
+        let scoreBoard = document.getElementById("scoreBoard");
+        let scoreText = document.getElementById("scoreText");
+        let scorePercent = document.getElementById("scorePercent");
+        
+        let percentage = Math.round((score / total) * 100);
+        
+        scoreBoard.style.display = "block";
+        scoreText.innerText = `Your Score: ${score} / ${total}`;
+        scorePercent.innerText = `Overall Result: ${percentage}% ${percentage >= 75 ? "— PASS! 🎉" : "— Need More Practice 📚"}`;
+        
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
